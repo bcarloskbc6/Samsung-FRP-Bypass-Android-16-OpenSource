@@ -1,0 +1,75 @@
+Documentation for your tool, including the technical explanation, setup guide, and the requested credits/purchase link.
+📘 Samsung FRP Bypass Tool (Android 15/16) - Documentation
+Developer: IRS Team
+Support: +15129532720
+Get More Source Codes: https://t.me/imeirepairserverupdates
+1. Overview
+The Samsung FRP Bypass Tool is a Windows-based utility designed to remove Factory Reset Protection (FRP) from Samsung devices running Android 15 and 16.
+Unlike traditional methods that require complex manual inputs or paid server credits, this tool utilizes a local modem exploit to force-enable USB Debugging (ADB). Once ADB is active, the tool automatically removes the Google Account lock.
+2. How the Exploit Works (The "Secret Door")
+This tool ignores the locked Android Operating System ("Front Door") and communicates directly with the device's hardware modem ("Side Door").
+The Process
+ * The Entry: The tool scans for the Samsung Modem Port (not the standard ADB interface).
+ * The Distraction: It sends a sequence of proprietary AT Commands (factory test codes) to the modem.
+   * AT+DUMPCTRL=1,0: Prepares the system for a state change.
+   * AT+SWATD=0: Disables the hardware Watchdog timer.
+ * The Trigger: It forces the internal Debug Level to "High."
+ * The Popup: When the Watchdog timer is re-enabled (AT+SWATD=1), the USB controller resets. Because the Debug Level is now High, the Android OS defaults to showing the "Allow USB Debugging" popup on the screen.
+ * The Unlock: Once the user clicks "Allow," the tool uses standard ADB commands to delete the com.google.android.gsf package (Google Services Framework), effectively removing the lock.
+3. Developer Guide: How to Build in Visual Studio 2025
+Prerequisites
+ * IDE: Microsoft Visual Studio 2025 (or 2019/2022).
+ * Framework: .NET Framework 4.7.2.
+ * External Files: ADB Platform Tools (adb.exe, AdbWinApi.dll, AdbWinUsbApi.dll).
+Step-by-Step Setup
+ * Create Project:
+   * Open Visual Studio.
+   * Select "Create a new project".
+   * Search for "Windows Forms App (.NET Framework)".
+   * Name the project: SamsungFRPTool.
+ * Add References:
+   * Go to Solution Explorer > Right-click References > Add Reference...
+   * Search for and check: System.Management.
+   * Click OK.
+ * Add the Code:
+   * Open Form1.cs.
+   * Delete all existing code.
+   * Paste the Full Source Code provided in the previous steps.
+ * Clean Up:
+   * Delete Program.cs from Solution Explorer (to prevent "multiple entry points" error).
+ * Add ADB Files (CRITICAL):
+   * Navigate to your project folder: bin\Debug.
+   * Paste adb.exe, AdbWinApi.dll, and AdbWinUsbApi.dll into this folder.
+   * Note: Without these files, the "Unlock" button will fail.
+ * Run:
+   * Press F5 or click the green Start arrow.
+4. File Structure
+Ensure your final project folder looks like this:
+SamsungFRPTool/
+│
+├── SamsungFRPTool.sln          (Solution File)
+│
+└── SamsungFRPTool/
+    ├── Form1.cs                (Main Source Code)
+    ├── SamsungFRPTool.csproj   (Project Settings)
+    ├── Properties/
+    │   └── AssemblyInfo.cs     (Metadata)
+    │
+    └── bin/
+        └── Debug/
+            ├── SamsungFRPTool.exe
+            ├── adb.exe             <-- REQUIRED
+            ├── AdbWinApi.dll       <-- REQUIRED
+            └── AdbWinUsbApi.dll    <-- REQUIRED
+
+5. Credits & Purchase
+This tool was developed by the IRS Team. We provide professional unlock solutions and source codes for mobile repair professionals.
+ * Telegram Channel: https://t.me/imeirepairserverupdates
+ * Contact Support: +15129532720
+Want more exclusive source codes?
+Visit our Telegram channel to buy source codes for:
+ * Xiaomi Auth Tools
+ * iPhone Ramdisk Tools
+ * OPPO/Vivo Reset Tools
+ * ...and more.
+Generated for IRS Team - Confidential Source Code
